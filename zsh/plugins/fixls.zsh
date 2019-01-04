@@ -4,7 +4,7 @@
 autoload -U colors && colors
 
 # Enable ls colors
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LSCOLORS="xxxxxxxxxxxxxxxxxxxxxx"
 
 # TODO organise this chaotic logic
 
@@ -23,8 +23,7 @@ if [[ "$DISABLE_LS_COLORS" != "true" ]]; then
 	colorls -G -d . &>/dev/null && alias ls='colorls -G'
   elif [[ "$OSTYPE" == darwin* ]]; then
 	# this is a good alias, it works by default just using $LSCOLORS
-	ls -G . &>/dev/null && alias ls='ls -G'
-
+	ls -G . &>/dev/null && alias ls='ls -FGhp'
 	# only use coreutils ls if there is a dircolors customization present ($LS_COLORS or .dircolors file)
 	# otherwise, gls will use the default color scheme which is ugly af
 	[[ -n "$LS_COLORS" || -f "$HOME/.dircolors" ]] && gls --color -d . &>/dev/null && alias ls='gls --color=tty'
@@ -33,8 +32,7 @@ if [[ "$DISABLE_LS_COLORS" != "true" ]]; then
 	if [[ -z "$LS_COLORS" ]]; then
 	  (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 	fi
-
-	ls --color -d . &>/dev/null && alias ls='ls --color=tty' || { ls -G . &>/dev/null && alias ls='ls -G' }
+	ls --color -d . &>/dev/null && alias ls='ls -FGhp --color=tty' || { ls -G . &>/dev/null && alias ls='ls -FGhp' }
 
 	# Take advantage of $LS_COLORS for completion as well.
 	zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

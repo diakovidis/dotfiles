@@ -17,11 +17,11 @@
 			then
 				BUFFER="git add -A && git commit -v && git push"
 		fi
-				
+
 		zle accept-line
 	}
-	zle -N git_prepare
-	bindkey "^g" git_prepare
+#	zle -N git_prepare
+#	bindkey "^g" git_prepare
 
 # home
 	function goto_home() { 
@@ -41,12 +41,12 @@
 	bindkey "^v" edit_and_run
 
 # LS
-	function ctrl_l() {
-		BUFFER="ls"
-		zle accept-line
-	}
-	zle -N ctrl_l
-	bindkey "^l" ctrl_l
+#	function ctrl_l() {
+#		BUFFER="ls"
+#		zle accept-line
+#	}
+#	zle -N ctrl_l
+#	bindkey "^l" ctrl_l
 
 # Enter
 	function enter_line() {
